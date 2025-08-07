@@ -9,7 +9,7 @@ export default function AppLayout({
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className="bg-[#F5F5F5]">{children}</main>
       <Footer />
     </>
   );

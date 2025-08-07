@@ -10,8 +10,14 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Eigen Article",
-  description: "Eigen Article is a platform for sharing and discovering articles.",
+  title: {
+    default: "Eigen Artivo",
+    template: "%s | Eigen Artivo",
+  },
+  description: "Eigen Artivo is a platform for sharing and discovering articles.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({

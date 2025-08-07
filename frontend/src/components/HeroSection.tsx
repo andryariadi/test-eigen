@@ -1,6 +1,8 @@
 // import FilterCategory from "./FilterCategory";
 // import SearchArticles from "./SearchArticles";
 
+import SearchArticles from "./SearchArticle";
+
 const HeroSection = async ({ query }: { query?: string }) => {
   return (
     <section className="relative h-[624px] md:h-[500px] w-full overflow-hidden">
@@ -28,7 +30,7 @@ const HeroSection = async ({ query }: { query?: string }) => {
               {/* <FilterCategory caategories={categories} /> */}
 
               {/* Search */}
-              {/* <SearchArticles query={query} /> */}
+              <SearchArticles query={query} />
             </div>
           </div>
         </div>
