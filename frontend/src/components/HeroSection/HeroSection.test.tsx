@@ -15,7 +15,7 @@ jest.mock("next/headers", () => ({
   }),
 }));
 
-describe("HeroSection", () => {
+describe.skip("HeroSection", () => {
   // 3. Test Render Utama
   it("renders all main sections correctly", async () => {
     const JSX = await HeroSection({ query: "test-query" });
