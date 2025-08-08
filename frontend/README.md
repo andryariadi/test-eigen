@@ -43,3 +43,5 @@ Step configuration jest and RTL:
    jest.setup.ts
    jest.config.ts
    tsconfig.jest.json
+3. Jalankan test:
+   npm run test:watch
