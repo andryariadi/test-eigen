@@ -1,4 +1,4 @@
-import ArticlesList from "@/components/ArticlesList";
+import ArticlesList from "@/components/ArticlesList/ArticlesList";
 import MarkdownArticle from "@/components/MarkdownArticle";
 import { getArticle, getArticles } from "@/libs/actions/article.action";
 import { ArticleProps } from "@/libs/types";

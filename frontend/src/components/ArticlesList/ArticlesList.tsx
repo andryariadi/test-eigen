@@ -1,5 +1,5 @@
 import { ArticleProps } from "@/libs/types";
-import ArticleCard from "./ArticleCard";
+import ArticleCard from "../ArticleCard/ArticleCard";
 import { cn } from "@/libs/utils";
 
 const ArticlesList = ({ articles, totalResult, isArticlesLength }: { articles: ArticleProps[]; totalResult?: number; isArticlesLength?: boolean }) => {

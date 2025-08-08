@@ -1,6 +1,6 @@
 import Form from "next/form";
 import { cn } from "@/libs/utils";
-import SearchFormReset from "./SearchFormReset";
+import SearchFormReset from "../SearchFormReset/SearchFormReset";
 import { SearchOutlined } from "@ant-design/icons";
 
 const SearchArticles = ({ query, action = "/", placeholder = "Search articles..." }: { query?: string; action?: string; placeholder?: string }) => {

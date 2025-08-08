@@ -1,5 +1,5 @@
-import ArticlesList from "@/components/ArticlesList";
-import HeroSection from "@/components/HeroSection";
+import ArticlesList from "@/components/ArticlesList/ArticlesList";
+import HeroSection from "@/components/HeroSection/HeroSection";
 import { getArticles } from "@/libs/actions/article.action";
 import { ArticleProps } from "@/libs/types";
 
