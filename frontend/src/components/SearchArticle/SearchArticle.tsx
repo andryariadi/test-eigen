@@ -7,7 +7,7 @@ const SearchArticles = ({ query, action = "/", placeholder = "Search articles...
   console.log({ query }, "<---query");
 
   return (
-    <Form action={action} scroll={false} className="group relative search w-full flex items-center justify-center">
+    <Form data-testid="form" action={action} scroll={false} className="group relative search w-full flex items-center justify-center">
       <div className="relative w-full max-w-2xl">
         <input
           type="text"
@@ -20,7 +20,7 @@ const SearchArticles = ({ query, action = "/", placeholder = "Search articles...
         <div className={cn("absolute top-[12.5px] right-3")}>{query && <SearchFormReset />}</div>
 
         <div className={cn("absolute top-[12.5px] left-3")}>
-          <button type="submit">
+          <button data-testid="search-button" type="submit">
             {/* <Search className={cn("text-slate-400 size-[24px]", { "size-[18px]": isAdmin })} /> */}
             <SearchOutlined size={24} style={{ color: "#BFAAB9" }} />
           </button>

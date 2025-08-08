@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { cn } from "@/libs/utils";
 import { CloseOutlined } from "@ant-design/icons";
 
 const SearchFormReset = () => {
@@ -12,8 +11,7 @@ const SearchFormReset = () => {
   };
   return (
     <button type="reset" onClick={reset}>
-      <Link href="/" className="flex items-center justify-center w-full h-full">
-        {/* <CircleX className={cn("text-slate-400 size-[24px]", { "size-[18px]": isAdmin })} /> */}
+      <Link data-testid="link" href="/" className="flex items-center justify-center w-full h-full">
         <CloseOutlined size={24} style={{ color: "#BFAAB9" }} />
       </Link>
     </button>
