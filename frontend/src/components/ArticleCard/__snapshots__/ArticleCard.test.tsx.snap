@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ArticleCard Component matches snapshot with complete article data 1`] = `
+<DocumentFragment>
+  <figure
+    class="group h-[423px] hover:bg-white hover:shadow-lg transition-all duration-300 overflow-hidden rounded-[12px]"
+  >
+    <a
+      href="/article/Tech News"
+    >
+      <div
+        class="b-sky-800 relative h-full max-h-[240px] w-full overflow-hidden rounded-[12px]"
+      >
+        <img
+          alt="React Testing in 2024"
+          class="object-cover"
+          data-testid="article-image"
+          src="https://example.com/image.jpg"
+        />
+      </div>
+    </a>
+    <figcaption
+      class="b-amber-600 mt-4 flex flex-col gap-2 group-hover:px-2 transition-all duration-300 text-slate-600"
+      data-testid="figcaption"
+    >
+      <span
+        class="text-sm font-normal"
+      >
+        Formatted: 2024-01-01T00:00:00Z
+      </span>
+      <a
+        data-testid="article-title-link"
+        href="/article/Tech News"
+      >
+        <h2
+          class="text-lg text-slate-900 font-semibold line-clamp-1 capitalize"
+        >
+          React Testing in 2024
+        </h2>
+      </a>
+      <p
+        class="text-base font-normal line-clamp-2"
+      >
+        Learn how to test React components
+      </p>
+      <div
+        class="bg-blue-200 w-max px-3 py-1 rounded-full"
+      >
+        <a
+          class="text-blue-900 text-sm font-normal"
+          href="https://example.com/article"
+          target="_blank"
+        >
+          Tech News
+        </a>
+      </div>
+    </figcaption>
+  </figure>
+</DocumentFragment>
+`;
+
+exports[`ArticleCard Component matches snapshot with minimal article data 1`] = `
+<DocumentFragment>
+  <figure
+    class="group h-[423px] hover:bg-white hover:shadow-lg transition-all duration-300 overflow-hidden rounded-[12px]"
+  >
+    <a
+      href="/article/Minimal News"
+    >
+      <div
+        class="b-sky-800 relative h-full max-h-[240px] w-full overflow-hidden rounded-[12px]"
+      >
+        <img
+          alt="Minimal Article"
+          class="object-cover"
+          data-testid="article-image"
+          src="https://placehold.co/600x400/png"
+        />
+      </div>
+    </a>
+    <figcaption
+      class="b-amber-600 mt-4 flex flex-col gap-2 group-hover:px-2 transition-all duration-300 text-slate-600"
+      data-testid="figcaption"
+    >
+      <span
+        class="text-sm font-normal"
+      >
+        Formatted: 2024-01-02T00:00:00Z
+      </span>
+      <a
+        data-testid="article-title-link"
+        href="/article/Minimal News"
+      >
+        <h2
+          class="text-lg text-slate-900 font-semibold line-clamp-1 capitalize"
+        >
+          Minimal Article
+        </h2>
+      </a>
+      <p
+        class="text-base font-normal line-clamp-2"
+      />
+      <div
+        class="bg-blue-200 w-max px-3 py-1 rounded-full"
+      >
+        <a
+          class="text-blue-900 text-sm font-normal"
+          href="https://example.com/minimal"
+          target="_blank"
+        >
+          Minimal News
+        </a>
+      </div>
+    </figcaption>
+  </figure>
+</DocumentFragment>
+`;

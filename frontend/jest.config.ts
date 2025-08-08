@@ -13,6 +13,7 @@ const customJestConfig: Config.InitialOptions = {
     "^@/(.*)$": "<rootDir>/$1", // Handle alias TypeScript (jika ada)
     "^.+\\.(css|scss)$": "identity-obj-proxy",
     "^.+\\.(svg)$": "<rootDir>/__mocks__/svgMock.tsx",
+    // "^@/libs/utils$": "<rootDir>/libs/utils",
   },
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
   transform: {
