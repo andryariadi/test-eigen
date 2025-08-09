@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -26,4 +27,14 @@ export const stripHtmlTags = (html: string | null) => {
     const doc = new DOMParser().parseFromString(html ?? "", "text/html");
     return doc.body.textContent || "";
   }
+};
+
+export const handleApiError = (error: unknown): Error => {
+  console.log(error, "<--- API Error");
+  if (error instanceof AxiosError) {
+    return new Error(error.response?.data?.error || "An error occurred");
+  } else if (error instanceof Error) {
+    return error;
+  }
+  return new Error("An unknown error occurred");
 };

@@ -1,14 +1,24 @@
+"use client";
+
 import { ArticleProps } from "@/libs/types";
 import { formatNewsDate, stripHtmlTags } from "@/libs/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
-const ArticleCard = ({ article }: { article: ArticleProps }) => {
+const ArticleCard = ({ article }: { article: ArticleProps; href?: string }) => {
+  const searchParams = useSearchParams();
+
+  // Pertahankan semua parameter yang ada
+  const createArticleUrl = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    return `/?${params.toString()}`;
+  };
   return (
     <figure className="group h-[423px] hover:bg-white hover:shadow-lg transition-all duration-300 overflow-hidden rounded-[12px]">
       {/* Image */}
-      <Link href={`/article/${article.source.name}`}>
+      <Link href={`/article/${article.source.name}${createArticleUrl()}`}>
         <div className="b-sky-800 relative h-full max-h-[240px] w-full overflow-hidden rounded-[12px]">
           <Image src={article.urlToImage ?? "https://placehold.co/600x400/png"} fill alt={article.title} className="object-cover" />
         </div>
@@ -19,7 +29,7 @@ const ArticleCard = ({ article }: { article: ArticleProps }) => {
         <span className="text-sm font-normal">{formatNewsDate(article.publishedAt)}</span>
 
         {/* Title */}
-        <Link data-testid="article-title-link" href={`/article/${article.source.name}`}>
+        <Link data-testid="article-title-link" href={`/article/${article.source.name}${createArticleUrl()}`}>
           <h2 className="text-lg text-slate-900 font-semibold line-clamp-1 capitalize">{article.title}</h2>
         </Link>
 

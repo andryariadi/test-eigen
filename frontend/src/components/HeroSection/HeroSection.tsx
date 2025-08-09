@@ -1,3 +1,4 @@
+import FilterCategory from "../FilterCategory/FilterCategory";
 import SearchArticles from "../SearchArticle/SearchArticle";
 
 const HeroSection = async ({ query }: { query?: string }) => {
@@ -21,9 +22,12 @@ const HeroSection = async ({ query }: { query?: string }) => {
             <p className="text-xl md:text-2xl font-normal">Your daily dose of design insights!</p>
           </div>
 
-          {/* Search */}
+          {/* Filter & Search */}
           <div className="w-full max-w-[24.5rem] md:max-w-[38rem] mx-auto">
-            <div className="p-[10px] md:py-2 md:px-3 rounded-[12px] h-[130px] md:h-[70px] flex flex-col justify-center md:flex-row items-center gap-[8px]">
+            <div className="bg-blue-500/50 p-[10px] md:py-2 md:px-3 rounded-[12px] h-[130px] md:h-[70px] flex flex-col justify-center md:flex-row items-center gap-5">
+              {/* Filter */}
+              <FilterCategory />
+
               {/* Search */}
               <SearchArticles query={query} />
             </div>

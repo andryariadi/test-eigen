@@ -1,31 +1,28 @@
 import ArticlesList from "@/components/ArticlesList/ArticlesList";
 import HeroSection from "@/components/HeroSection/HeroSection";
+import NewsSelection from "@/components/NewsSelection/NewsSelection";
+import NotFoundArticle from "@/components/NotFoundArticle/NotFoundArticle";
 import { getArticles } from "@/libs/actions/article.action";
-import { ArticleProps } from "@/libs/types";
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
-  const { query } = await searchParams;
+export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string; category?: string; news_selection?: string }> }) {
+  const { query, category, news_selection } = await searchParams;
 
-  const articlesRes = await getArticles();
-  const totalResults = articlesRes.totalResults;
-  let articles = articlesRes.articles;
+  const validatedType = news_selection === "top-headlines" ? "top-headlines" : "everything";
 
-  if (query) {
-    articles = articles.filter(
-      (article: ArticleProps) =>
-        article.title.toLowerCase().includes(query.toLowerCase()) ||
-        (article.content && article.content.toLowerCase().includes(query.toLowerCase())) ||
-        article.source.name.toLowerCase().includes(query.toLowerCase()) ||
-        (article.description && article.description.toLowerCase().includes(query.toLowerCase()))
-    );
-  }
+  const { articles, totalResults } = await getArticles(validatedType, {
+    query,
+    category,
+  });
 
-  // console.log({ articles }, "<---articleHome");
+  // console.log({ news_selection, articles }, "<---homepage");
 
   return (
-    <section className="b-amber-500 min-h-[calc(100vh-4.5rem)] space-y-10">
+    <section className="min-h-[calc(100vh-4.5rem)] space-y-10">
       <HeroSection query={query} />
-      <ArticlesList articles={articles} totalResult={totalResults} isArticlesLength />
+
+      <NewsSelection />
+
+      {!articles || articles.length === 0 ? <NotFoundArticle /> : <ArticlesList articles={articles} totalResult={totalResults} isArticlesLength />}
     </section>
   );
 }

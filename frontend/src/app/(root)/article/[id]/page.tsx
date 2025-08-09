@@ -1,24 +1,38 @@
 import ArticlesList from "@/components/ArticlesList/ArticlesList";
 import MarkdownArticle from "@/components/MarkdownArticle";
-import { getArticle, getArticles } from "@/libs/actions/article.action";
+import { getArticle, getOtherArticles } from "@/libs/actions/article.action";
 import { ArticleProps } from "@/libs/types";
 import { formatNewsDate } from "@/libs/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-const ArticleDetailPage = async ({ params }: { params: Promise<{ id?: string }> }) => {
-  const { id } = await params;
-  const decodedId = id ? decodeURIComponent(id) : null;
+interface PageProps {
+  params: Promise<{ id?: string }>;
+  searchParams: Promise<{
+    news_selection?: "top-headlines" | "everything";
+    query?: string;
+    category?: string;
+  }>;
+}
 
-  const article: ArticleProps = await getArticle(decodedId);
-  const { articles } = await getArticles();
+const ArticleDetailPage = async ({ params, searchParams }: PageProps) => {
+  const [resolvedParams, resolvedSearchParams] = await Promise.all([params, searchParams]);
 
-  const otherArticles = articles
-    .filter((item: ArticleProps) => item.source.name !== article.source.name)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3);
+  const decodedId = resolvedParams.id ? decodeURIComponent(resolvedParams.id) : null;
+  const newsType = resolvedSearchParams.news_selection || "everything";
 
-  //   console.log({ decodedId, article, otherArticles }, "<---articleDetail");
+  const article = await getArticle(decodedId, newsType, {
+    query: resolvedSearchParams.query,
+    category: resolvedSearchParams.category,
+  });
+
+  if (!article) return notFound();
+
+  const otherArticles = await getOtherArticles(article.source.name, newsType, {
+    query: resolvedSearchParams.query,
+    category: resolvedSearchParams.category,
+  });
 
   return (
     <section className="min-h-[calc(100vh-4.5rem)] pt-20 space-y-15 ">

@@ -10,7 +10,7 @@ const customJestConfig: Config.InitialOptions = {
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1", // Handle alias TypeScript (jika ada)
+    "^@/(.*)$": "<rootDir>/src/$1", // Handle alias TypeScript (jika ada)
     "^.+\\.(css|scss)$": "identity-obj-proxy",
     "^.+\\.(svg)$": "<rootDir>/__mocks__/svgMock.tsx",
     // "^@/libs/utils$": "<rootDir>/libs/utils",
