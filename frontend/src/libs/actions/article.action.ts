@@ -6,7 +6,7 @@ import { handleApiError } from "../utils";
 
 const BASE_URL = "https://newsapi.org/v2";
 
-export const getTopheadlinesArticles = async (query?: string, category = "general", country = "us", pageSize = 10, page = 1) => {
+export const getTopheadlinesArticles = async (query?: string, category = "general", country = "us", pageSize = 15, page = 1) => {
   try {
     const res = await axios.get(`${BASE_URL}/top-headlines`, {
       params: {
@@ -19,6 +19,7 @@ export const getTopheadlinesArticles = async (query?: string, category = "genera
     });
 
     const articles = res.data.articles;
+    const totalResults = res.data.totalResults;
 
     if (query) {
       const filteredArticles = articles.filter(
@@ -29,9 +30,9 @@ export const getTopheadlinesArticles = async (query?: string, category = "genera
           (article.description && article.description.toLowerCase().includes(query.toLowerCase()))
       );
 
-      return { articles: filteredArticles, totalResults: res.data.totalResults };
+      return { articles: filteredArticles, totalResults, pageSize, currentPage: page };
     } else {
-      return { articles, totalResults: res.data.totalResults };
+      return { articles, totalResults, pageSize, currentPage: page };
     }
   } catch (error) {
     throw handleApiError(error);
@@ -57,17 +58,21 @@ export const getEverythingArticles = async (q = "tesla", language = "en", sortBy
     const articles = res.data.articles;
     const totalResults = res.data.totalResults;
 
-    return { articles, totalResults };
+    return { articles, totalResults, pageSize, currentPage: page };
   } catch (error) {
     throw handleApiError(error);
   }
 };
 
 export const getArticles = async (type: "top-headlines" | "everything", params: Record<string, string | undefined>) => {
+  const page = params.page ? Number(params.page) : 1;
+
+  const pageSize = params.pageSize ? Number(params.pageSize) : type === "top-headlines" ? 15 : 15;
+
   if (type === "top-headlines") {
-    return await getTopheadlinesArticles(params.query, params.category);
+    return await getTopheadlinesArticles(params.query as string | undefined, params.category as string | undefined, params.country as string | undefined, pageSize, page);
   } else {
-    return await getEverythingArticles(params.query);
+    return await getEverythingArticles(params.query as string | undefined, params.language as string | undefined, params.sortBy as string | undefined, pageSize, page);
   }
 };
 

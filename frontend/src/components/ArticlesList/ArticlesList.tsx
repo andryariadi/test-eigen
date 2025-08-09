@@ -3,15 +3,19 @@
 import { ArticleProps } from "@/libs/types";
 import ArticleCard from "../ArticleCard/ArticleCard";
 import { cn } from "@/libs/utils";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import ButtonPagination from "../ButtonPagination/ButtonPagination";
 
-const ArticlesList = ({ articles, totalResult, isArticlesLength }: { articles: ArticleProps[]; totalResult?: number; isArticlesLength?: boolean }) => {
+const ArticlesList = ({ articles, totalResult = 15, currentPage = 1, isArticlesLength }: { articles: ArticleProps[]; totalResult?: number; currentPage?: number; isArticlesLength?: boolean }) => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-  // Pertahankan semua parameter yang ada
-  const createArticleUrl = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    return `/?${params.toString()}`;
+  const handlePageChange = (page: number, pageSize: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", page.toString());
+    params.set("pageSize", pageSize.toString());
+    replace(`${pathname}?${params.toString()}`);
   };
 
   if (totalResult === 0) return <div className="text-xl text-center font-semibold text-slate-500">No articles found</div>;
@@ -35,6 +39,9 @@ const ArticlesList = ({ articles, totalResult, isArticlesLength }: { articles: A
           <ArticleCard key={article.author} article={article} />
         ))}
       </div>
+
+      {/* Button Pagination */}
+      {isArticlesLength && <ButtonPagination total={totalResult} current={currentPage} onChange={handlePageChange} />}
     </section>
   );
 };

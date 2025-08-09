@@ -4,17 +4,17 @@ import NewsSelection from "@/components/NewsSelection/NewsSelection";
 import NotFoundArticle from "@/components/NotFoundArticle/NotFoundArticle";
 import { getArticles } from "@/libs/actions/article.action";
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string; category?: string; news_selection?: string }> }) {
-  const { query, category, news_selection } = await searchParams;
+export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string; category?: string; news_selection?: string; page?: string; pageSize?: string }> }) {
+  const { query, category, news_selection, page, pageSize } = await searchParams;
 
   const validatedType = news_selection === "top-headlines" ? "top-headlines" : "everything";
 
-  const { articles, totalResults } = await getArticles(validatedType, {
+  const { articles, totalResults, currentPage } = await getArticles(validatedType, {
     query,
     category,
+    page,
+    pageSize,
   });
-
-  // console.log({ news_selection, articles }, "<---homepage");
 
   return (
     <section className="min-h-[calc(100vh-4.5rem)] space-y-10">
@@ -22,7 +22,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 
       <NewsSelection />
 
-      {!articles || articles.length === 0 ? <NotFoundArticle /> : <ArticlesList articles={articles} totalResult={totalResults} isArticlesLength />}
+      {!articles || articles.length === 0 ? <NotFoundArticle /> : <ArticlesList articles={articles} totalResult={totalResults} currentPage={currentPage} isArticlesLength />}
     </section>
   );
 }
