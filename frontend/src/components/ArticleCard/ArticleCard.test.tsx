@@ -19,6 +19,12 @@ jest.mock("next/link", () => ({
   ),
 }));
 
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn(() => ({
+    toString: () => "",
+  })),
+}));
+
 jest.mock("../../libs/utils", () => ({
   __esModule: true,
   formatNewsDate: jest.fn((date: string) => `Formatted: ${date}`),
@@ -50,7 +56,6 @@ describe.skip("ArticleCard Component", () => {
 
     // 1. Test images
     const image = screen.getByTestId("article-image");
-
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("src", mockArticle.urlToImage);
     expect(image).toHaveAttribute("alt", mockArticle.title);
@@ -60,15 +65,14 @@ describe.skip("ArticleCard Component", () => {
     expect(formatNewsDate).toHaveBeenCalledWith(mockArticle.publishedAt);
     expect(screen.getByText(`Formatted: ${mockArticle.publishedAt}`)).toBeInTheDocument();
 
-    // 3. Test link to article
+    // 3. Test link to article - Perbaikan di sini
     const titleLink = screen.getByTestId("article-title-link");
-
     expect(titleLink).toBeInTheDocument();
-    expect(titleLink).toHaveAttribute("href", `/article/${mockArticle.source.name}`);
+    expect(titleLink).toHaveAttribute("href", expect.stringContaining(`/article/${mockArticle.source.name}`));
+    expect(titleLink).toHaveAttribute("href", expect.stringMatching(/^\/article\/Tech News\/\?/));
 
     // 4. Test article title
     const titleText = screen.getByText(mockArticle.title);
-
     expect(titleText).toHaveClass("capitalize");
     expect(titleText).toHaveClass("line-clamp-1");
     expect(titleText).toHaveClass("text-lg");
@@ -82,7 +86,6 @@ describe.skip("ArticleCard Component", () => {
 
     // 6. Test category
     const categoryLink = screen.getByRole("link", { name: mockArticle.source.name });
-
     expect(categoryLink).toBeInTheDocument();
     expect(categoryLink).toHaveAttribute("href", mockArticle.url);
     expect(categoryLink).toHaveAttribute("target", "_blank");

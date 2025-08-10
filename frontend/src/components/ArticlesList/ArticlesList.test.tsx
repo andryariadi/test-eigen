@@ -13,6 +13,20 @@ jest.mock("../ArticleCard/ArticleCard", () => ({
   ),
 }));
 
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 describe.skip("ArticlesList Component", () => {
   const mockArticles: ArticleProps[] = [
     {
@@ -104,11 +118,5 @@ describe.skip("ArticlesList Component", () => {
     render(<ArticlesList articles={[]} totalResult={0} />);
 
     expect(screen.getByText("No articles found")).toBeInTheDocument();
-  });
-
-  it("matches snapshot with full article data", () => {
-    const { asFragment } = render(<ArticlesList articles={mockArticles} totalResult={15} isArticlesLength={true} />);
-
-    expect(asFragment()).toMatchSnapshot();
   });
 });

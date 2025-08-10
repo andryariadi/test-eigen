@@ -1,7 +1,6 @@
 import ArticlesList from "@/components/ArticlesList/ArticlesList";
 import MarkdownArticle from "@/components/MarkdownArticle";
 import { getArticle, getOtherArticles } from "@/libs/actions/article.action";
-import { ArticleProps } from "@/libs/types";
 import { formatNewsDate } from "@/libs/utils";
 import Image from "next/image";
 import Link from "next/link";

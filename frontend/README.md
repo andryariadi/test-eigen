@@ -1,47 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 Articles Project
 
-## Getting Started
+## 📖 Deskripsi
 
-First, run the development server:
+Project ini memiliki dua bagian utama:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. **algoritma** → Node.js untuk melakukan pengujian algoritma.
+2. **frontend** → Aplikasi Articles berbasis **Next.js App Router** dengan **Ant Design**, memiliki fitur:
+   - Search Artikel
+   - Filter Artikel
+   - Pagination
+   - Daftar Artikel
+   - Detail Artikel
+
+---
+
+## 📂 Struktur Proyek
+
+```
+.
+├── algoritma/       # Folder untuk pengujian algoritma (Node.js)
+├── frontend/        # Folder untuk aplikasi articles (Next.js + Ant Design)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Teknologi yang Digunakan
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **algoritma**
 
-## Learn More
+- Node.js
+- JavaScript (ES Modules/CommonJS)
 
-To learn more about Next.js, take a look at the following resources:
+### **frontend**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js (App Router)
+- React
+- Ant Design (UI Framework)
+- Axios (HTTP Client)
+- CSS/SCSS Modules
+- ESLint & Prettier (Code Quality)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚙️ Instalasi & Menjalankan Proyek
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1. Clone Repository
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+git clone https://github.com/username/nama-repo.git
+cd nama-repo
+```
 
-Step configuration jest and RTL:
+---
 
-1. Install package:
-   npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event jest-environment-jsdom @testing-library/dom @types/jest ts-jest
-2. Setup configuration:
-   jest.setup.ts
-   jest.config.ts
-   tsconfig.jest.json
-3. Jalankan test:
-   npm run test:watch
+### 2. Menjalankan Folder **algoritma**
+
+```bash
+cd algoritma
+npm install
+npm run dev
+```
+
+> Pastikan **Node.js** sudah terinstal di komputer Anda.
+
+---
+
+### 3. Menjalankan Folder **frontend**
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Akses aplikasi di: **http://localhost:3000**
+
+---
+
+## 🔍 Fitur Aplikasi Frontend
+
+1. **Search Artikel** – mencari artikel berdasarkan kata kunci.
+2. **Filter Artikel** – memfilter artikel berdasarkan kategori atau parameter tertentu.
+3. **Pagination** – navigasi antar halaman artikel.
+4. **Article Lists** – menampilkan daftar artikel.
+5. **Detail Article Page** – menampilkan detail dari artikel terpilih.

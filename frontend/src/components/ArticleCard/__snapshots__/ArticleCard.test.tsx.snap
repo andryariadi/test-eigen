@@ -6,7 +6,7 @@ exports[`ArticleCard Component matches snapshot with complete article data 1`] =
     class="group h-[423px] hover:bg-white hover:shadow-lg transition-all duration-300 overflow-hidden rounded-[12px]"
   >
     <a
-      href="/article/Tech News"
+      href="/article/Tech News/?"
     >
       <div
         class="b-sky-800 relative h-full max-h-[240px] w-full overflow-hidden rounded-[12px]"
@@ -30,7 +30,7 @@ exports[`ArticleCard Component matches snapshot with complete article data 1`] =
       </span>
       <a
         data-testid="article-title-link"
-        href="/article/Tech News"
+        href="/article/Tech News/?"
       >
         <h2
           class="text-lg text-slate-900 font-semibold line-clamp-1 capitalize"
@@ -65,7 +65,7 @@ exports[`ArticleCard Component matches snapshot with minimal article data 1`] = 
     class="group h-[423px] hover:bg-white hover:shadow-lg transition-all duration-300 overflow-hidden rounded-[12px]"
   >
     <a
-      href="/article/Minimal News"
+      href="/article/Minimal News/?"
     >
       <div
         class="b-sky-800 relative h-full max-h-[240px] w-full overflow-hidden rounded-[12px]"
@@ -89,7 +89,7 @@ exports[`ArticleCard Component matches snapshot with minimal article data 1`] = 
       </span>
       <a
         data-testid="article-title-link"
-        href="/article/Minimal News"
+        href="/article/Minimal News/?"
       >
         <h2
           class="text-lg text-slate-900 font-semibold line-clamp-1 capitalize"

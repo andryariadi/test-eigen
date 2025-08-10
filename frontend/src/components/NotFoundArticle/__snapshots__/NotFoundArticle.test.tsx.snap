@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`NotFoundArticle Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-center justify-center pb-10"
+    data-testid="not-found-article"
+  >
+    <span
+      class="text-xl text-center font-semibold text-slate-500"
+    >
+      No articles found
+    </span>
+    ;
+  </div>
+</DocumentFragment>
+`;
