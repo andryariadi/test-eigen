@@ -17,7 +17,7 @@
 **/coverage/
 
 # Environment files
-**/.env*
+**/.env
 
 # Logs
 *.log
