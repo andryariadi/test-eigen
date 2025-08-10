@@ -59,12 +59,12 @@ describe.skip("ArticleDetailPage", () => {
 
     render(
       await ArticleDetailPage({
-        params: Promise.resolve({ id: encodeURIComponent("123") }),
-        searchParams: Promise.resolve({
+        params: { id: encodeURIComponent("123") },
+        searchParams: {
           news_selection: "top-headlines",
           query: "tech",
           category: "science",
-        }),
+        },
       })
     );
 
@@ -90,8 +90,8 @@ describe.skip("ArticleDetailPage", () => {
     (getArticle as jest.Mock).mockResolvedValue(null);
 
     await ArticleDetailPage({
-      params: Promise.resolve({ id: encodeURIComponent("not-exist") }),
-      searchParams: Promise.resolve({}),
+      params: { id: encodeURIComponent("not-exist") },
+      searchParams: {},
     });
 
     expect(notFound).toHaveBeenCalled();

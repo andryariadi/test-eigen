@@ -3,6 +3,12 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 import NewsSelection from "@/components/NewsSelection/NewsSelection";
 import NotFoundArticle from "@/components/NotFoundArticle/NotFoundArticle";
 import { getArticles } from "@/libs/actions/article.action";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Eigen Artivo is a platform for sharing and discovering articles.",
+};
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string; category?: string; news_selection?: string; language?: string; page?: string; pageSize?: string }> }) {
   const { query, category, news_selection, language, page, pageSize } = await searchParams;
@@ -19,7 +25,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 
   return (
     <section className="min-h-[calc(100vh-4.5rem)] space-y-10">
-      <HeroSection query={query} />
+      <HeroSection query={query} news_selection={validatedType} />
 
       <NewsSelection />
 
